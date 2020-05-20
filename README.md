@@ -1,2 +1,4 @@
 # galle
-first converter
+converter written in Go
+
+https://golang.org
