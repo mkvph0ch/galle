@@ -14,10 +14,10 @@ func main() {
   mystring2 = "Apfel"
 
   if mystring == mystring2 {
-    pmt.Println("Identical")
+    fmt.Println("Identical")
   }
 
   if mystring != mystring2 {
-    pmt.Println("Not Identical")
+    fmt.Println("Not Identical")
   }
 }
