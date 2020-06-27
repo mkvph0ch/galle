@@ -6,7 +6,7 @@ import (
 	//"strings"
 )
 
-func main {
+func main() {
   var mystring string
   mystring = "Birne"
 
