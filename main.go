@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
-	"strings"
+	//"strings"
 	"os"
 	"time"
 )
@@ -37,10 +37,43 @@ func main() {
 
 	for active {
 		fmt.Println("Fahrenheit or Kelvin to Celsius")
-		fmt.Println("Wavelength to Wavenumber or Wavenumber to Wavelength")
+		fmt.Println("Wavelength to Wavenumber")
+		fmt.Println("Wavenumber to Wavelength")
+		fmt.Println("Type Quit to close the program")
 		var input string
 		fmt.Scanln(&input)
 
+		switch input {
+		default:
+			fmt.Println("Please choose a conversion from the list!")
+		case "Quit":
+			fmt.Println("Program will be closed")
+			active = false
+			time.Sleep(time.Millisecond * 2000)
+			os.Exit(1)
+		case "Fahrenheit":
+			fmt.Println("Type Temperature in Fahrenheit!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(fahrenheit(x))
+		case "Kelvin":
+			fmt.Println("Type Temperature in Kelvin!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(kelvin(x))
+		case "Wavelength":
+			fmt.Println("Type Wavelength in nm!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(wavelength(x))
+		case "Wavenumber":
+			fmt.Println("Type Wavenumber in cm-1!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(wavenumber(x))
+		}
+		/* This block is no longer needed and can be deleted later
+		
 		if strings.Compare(input, "Quit") == 0 {
 			fmt.Println("Program will be closed")
 			active = false
@@ -74,7 +107,7 @@ func main() {
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(wavenumber(x))
-		}
+		} */
 	}
-	
+
 }
