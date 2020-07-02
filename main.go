@@ -32,6 +32,13 @@ func wavenumber(a float64) float64  {
 	return b
 }
 
+func energy(a float64) float64  {
+	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
+	b := 8.617333262145*math.Pow(10,-5) * a
+	return b
+}
+
+
 func main() {
 	active := true
 
@@ -39,6 +46,7 @@ func main() {
 		fmt.Println("Fahrenheit or Kelvin to Celsius")
 		fmt.Println("Wavelength to Wavenumber")
 		fmt.Println("Wavenumber to Wavelength")
+		fmt.Println("Kelvin to thermal Energy")
 		fmt.Println("Type Quit to close the program")
 		var input string
 		fmt.Scanln(&input)
@@ -71,9 +79,15 @@ func main() {
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(wavenumber(x))
+		case "Energy":
+			fmt.Println("Type Temperature in K!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(energy(x))
+
 		}
 		/* This block is no longer needed and can be deleted later
-		
+
 		if strings.Compare(input, "Quit") == 0 {
 			fmt.Println("Program will be closed")
 			active = false
