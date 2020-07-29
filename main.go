@@ -39,7 +39,7 @@ func energy_eV(a float64) float64  {
 }
 
 func energy_K(a float64) float64  {
-	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
+	// convert thermal Energy eV to Kelvin (k_boltzmann * T)
 	b := a / 8.617333262145*math.Pow(10,-5)
 	return b
 }
@@ -52,6 +52,7 @@ func main() {
 		fmt.Println("Wavelength to Wavenumber")
 		fmt.Println("Wavenumber to Wavelength")
 		fmt.Println("Kelvin to thermal Energy")
+		fmt.Println("Thermal Energy to Kelvin")
 		fmt.Println("Type Quit to close the program")
 		var input string
 		fmt.Scanln(&input)
