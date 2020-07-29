@@ -32,12 +32,17 @@ func wavenumber(a float64) float64  {
 	return b
 }
 
-func energy(a float64) float64  {
+func energy_eV(a float64) float64  {
 	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
 	b := 8.617333262145*math.Pow(10,-5) * a
 	return b
 }
 
+func energy_K(a float64) float64  {
+	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
+	b := a / 8.617333262145*math.Pow(10,-5)
+	return b
+}
 
 func main() {
 	active := true
