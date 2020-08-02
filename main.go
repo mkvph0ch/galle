@@ -89,7 +89,12 @@ func main() {
 			fmt.Println("Type Temperature in K!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(energy(x))
+			fmt.Println(energy_eV(x))
+		case "Temperature":
+			fmt.Println("Type Energy in eV!")
+			var x float64
+			fmt.Scanln(&x)
+			fmt.Println(energy_K(x))
 
 		}
 		/* This block is no longer needed and can be deleted later
