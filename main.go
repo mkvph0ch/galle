@@ -20,14 +20,9 @@ func kelvin(a float64) float64 {
 	return b
 }
 
-func wavelength(a float64) float64 {
-	// convert Wavelength nm to Wavenumber cm-1
-	b := 1/(a*math.Pow(10, -7))
-	return b
-}
 
-func wavenumber(a float64) float64  {
-	// convert Wavenumber cm-1 to Wavelength nm
+func waveconvert(a float64) float64  {
+	// convert Wavenumber cm-1 <-> Wavelength nm
 	b := 1/(a*math.Pow(10, -7))
 	return b
 }
@@ -79,12 +74,12 @@ func main() {
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(wavelength(x))
+			fmt.Println(waveconvert(x))
 		case "Wavenumber":
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(wavenumber(x))
+			fmt.Println(waveconvert(x))
 		case "Energy":
 			fmt.Println("Type Temperature in K!")
 			var x float64
