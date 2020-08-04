@@ -64,35 +64,35 @@ func main() {
 			fmt.Println("Type Temperature in Fahrenheit!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(fahrenheit(x))
+			fmt.Println(fahrenheit(x), "ºC")
 		case "Kelvin":
 			fmt.Println("Type Temperature in Kelvin!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(kelvin(x))
+			fmt.Println(kelvin(x), "ºC")
 		case "Wavelength":
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(waveconvert(x))
+			fmt.Println(waveconvert(x), "cm-1")
 		case "Wavenumber":
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(waveconvert(x))
+			fmt.Println(waveconvert(x), "nm")
 		case "Energy":
 			fmt.Println("Type Temperature in K!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(energy_eV(x))
+			fmt.Println(energy_eV(x), "eV")
 		case "Temperature":
 			fmt.Println("Type Energy in eV!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(energy_K(x))
+			fmt.Println(energy_K(x), "K")
 
 		}
-		
+
 	}
 
 }
