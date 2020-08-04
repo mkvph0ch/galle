@@ -97,42 +97,7 @@ func main() {
 			fmt.Println(energy_K(x))
 
 		}
-		/* This block is no longer needed and can be deleted later
-
-		if strings.Compare(input, "Quit") == 0 {
-			fmt.Println("Program will be closed")
-			active = false
-			time.Sleep(time.Millisecond * 2000)
-			os.Exit(1)
-		}
-
-		if strings.Compare(input, "Fahrenheit") == 0 {
-			fmt.Println("Type Temperature in Fahrenheit!")
-			var x float64
-			fmt.Scanln(&x)
-			fmt.Println(fahrenheit(x))
-		}
-
-		if strings.Compare(input, "Kelvin") == 0 {
-			fmt.Println("Type Temperature in Kelvin!")
-			var x float64
-			fmt.Scanln(&x)
-			fmt.Println(kelvin(x))
-		}
-
-		if strings.Compare(input, "Wavelength") == 0 {
-			fmt.Println("Type Wavelength in nm!")
-			var x float64
-			fmt.Scanln(&x)
-			fmt.Println(wavelength(x))
-		}
-
-		if strings.Compare(input, "Wavenumber") == 0 {
-			fmt.Println("Type Wavenumber in cm-1!")
-			var x float64
-			fmt.Scanln(&x)
-			fmt.Println(wavenumber(x))
-		} */
+		
 	}
 
 }
