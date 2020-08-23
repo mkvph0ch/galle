@@ -23,8 +23,13 @@ func kelvin(a float64) float64 {
 
 func waveconvert(a float64) float64  {
 	// convert Wavenumber cm-1 <-> Wavelength nm
-	b := 1/(a*math.Pow(10, -7))
-	return b
+	if a != 0 {
+		b := 1/(a*math.Pow(10, -7))
+		return b
+	} else {
+		fmt.Println("Divison by 0 not possible")
+		return 0
+	}
 }
 
 func energy_eV(a float64) float64  {
