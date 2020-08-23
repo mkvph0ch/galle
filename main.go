@@ -47,13 +47,18 @@ func energy_K(a float64) float64  {
 func main() {
 	active := true
 
+	fmt.Println("Fahrenheit or Kelvin to Celsius")
+	fmt.Println("Wavelength to Wavenumber")
+	fmt.Println("Wavenumber to Wavelength")
+	fmt.Println("Kelvin to thermal Energy")
+	fmt.Println("Thermal Energy to Kelvin")
+	fmt.Println("Type Quit to close the program")
+
 	for active {
-		fmt.Println("Fahrenheit or Kelvin to Celsius")
-		fmt.Println("Wavelength to Wavenumber")
-		fmt.Println("Wavenumber to Wavelength")
-		fmt.Println("Kelvin to thermal Energy")
-		fmt.Println("Thermal Energy to Kelvin")
-		fmt.Println("Type Quit to close the program")
+
+		fmt.Println("")
+		fmt.Println("Choose a Converter")
+
 		var input string
 		fmt.Scanln(&input)
 
