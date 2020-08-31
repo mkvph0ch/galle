@@ -47,11 +47,11 @@ func energy_K(a float64) float64  {
 func main() {
 	active := true
 
-	fmt.Println("Fahrenheit or Kelvin to Celsius")
-	fmt.Println("Wavelength to Wavenumber")
-	fmt.Println("Wavenumber to Wavelength")
-	fmt.Println("Kelvin to thermal Energy")
-	fmt.Println("Thermal Energy to Kelvin")
+	fmt.Println("(1) Fahrenheit or (2) Kelvin to Celsius")
+	fmt.Println("(3) Wavelength to Wavenumber")
+	fmt.Println("(4) Wavenumber to Wavelength")
+	fmt.Println("(5) Kelvin to thermal Energy")
+	fmt.Println("(6) Thermal Energy to Kelvin")
 	fmt.Println("Type Quit to close the program")
 
 	for active {
@@ -70,32 +70,32 @@ func main() {
 			active = false
 			time.Sleep(time.Millisecond * 2000)
 			os.Exit(1)
-		case "Fahrenheit":
+		case "1":
 			fmt.Println("Type Temperature in Fahrenheit!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(fahrenheit(x), "ºC")
-		case "Kelvin":
+		case "2":
 			fmt.Println("Type Temperature in Kelvin!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(kelvin(x), "ºC")
-		case "Wavelength":
+		case "3":
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(waveconvert(x), "cm-1")
-		case "Wavenumber":
+		case "4":
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(waveconvert(x), "nm")
-		case "Energy":
+		case "5":
 			fmt.Println("Type Temperature in K!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(energy_eV(x), "eV")
-		case "Temperature":
+		case "6":
 			fmt.Println("Type Energy in eV!")
 			var x float64
 			fmt.Scanln(&x)
