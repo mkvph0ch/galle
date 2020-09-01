@@ -53,6 +53,16 @@ func options()  {
 	fmt.Println("Type Quit to close the program")
 }
 
+func output(y1 PhysUnit, y2 PhysUnit) {
+	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit)
+}
+
+type PhysUnit struct {
+	id string
+	value	float64
+	unit string
+}
+
 func main() {
 	active := true
 
@@ -85,7 +95,10 @@ func main() {
 			fmt.Println("Type Temperature in Kelvin!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(kelvin(x), "ºC")
+			y1 := PhysUnit{id: "Temperature", value: x, unit: "K"}
+			y2 := PhysUnit{id: "Temperature", value: kelvin(x), unit: "°C"}
+			output(y1, y2)
+			//fmt.Println(kelvin(x), "ºC")
 		case "3":
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
