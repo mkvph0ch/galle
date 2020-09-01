@@ -54,7 +54,7 @@ func options()  {
 }
 
 func output(y1 PhysUnit, y2 PhysUnit) {
-	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit)
+	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit, ".")
 }
 
 type PhysUnit struct {
