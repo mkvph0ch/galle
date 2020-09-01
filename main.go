@@ -44,20 +44,24 @@ func energy_K(a float64) float64  {
 	return b
 }
 
-func main() {
-	active := true
-
+func options()  {
 	fmt.Println("(1) Fahrenheit or (2) Kelvin to Celsius")
 	fmt.Println("(3) Wavelength to Wavenumber")
 	fmt.Println("(4) Wavenumber to Wavelength")
 	fmt.Println("(5) Kelvin to thermal Energy")
 	fmt.Println("(6) Thermal Energy to Kelvin")
 	fmt.Println("Type Quit to close the program")
+}
+
+func main() {
+	active := true
+
+	options()
 
 	for active {
 
 		fmt.Println("")
-		fmt.Println("Choose a Converter")
+		fmt.Println("Choose a Converter, 'Type Options'")
 
 		var input string
 		fmt.Scanln(&input)
@@ -70,6 +74,8 @@ func main() {
 			active = false
 			time.Sleep(time.Millisecond * 2000)
 			os.Exit(1)
+		case "Options":
+			options()
 		case "1":
 			fmt.Println("Type Temperature in Fahrenheit!")
 			var x float64
