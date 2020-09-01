@@ -5,7 +5,7 @@ import (
 	//"math"
 	//"strings"
 )
-
+//kommentar
 func main() {
   var mystring string
   mystring = "Birne"
