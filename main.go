@@ -90,7 +90,9 @@ func main() {
 			fmt.Println("Type Temperature in Fahrenheit!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(fahrenheit(x), "ºC")
+			y1 := PhysUnit{id: "Temperature", value: x, unit: "F"}
+			y2 := PhysUnit{id: "Temperature", value: fahrenheit(x), unit: "°C"}
+			output(y1, y2)
 		case "2":
 			fmt.Println("Type Temperature in Kelvin!")
 			var x float64
@@ -98,12 +100,13 @@ func main() {
 			y1 := PhysUnit{id: "Temperature", value: x, unit: "K"}
 			y2 := PhysUnit{id: "Temperature", value: kelvin(x), unit: "°C"}
 			output(y1, y2)
-			//fmt.Println(kelvin(x), "ºC")
 		case "3":
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(waveconvert(x), "cm-1")
+			y1 := PhysUnit{id: "Wavelength", value: x, unit: "nm"}
+			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(x), unit: "cm-1"}
+			output(y1, y2)
 		case "4":
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
