@@ -20,6 +20,18 @@ func kelvin(a float64) float64 {
 	return b
 }
 
+func cToKelvin(num float64) float64 {
+	// convert Celsius °C to Kelvin
+	result := num + 273.15
+	return result
+}
+
+func cToFahrenheit(num float64) float64 {
+	// convert Celsius °C to Fahrenheit
+	result := (num * 9/5) + 32
+	return result
+}
+
 
 func waveconvert(a float64) float64  {
 	// convert Wavenumber cm-1 <-> Wavelength nm
@@ -46,10 +58,11 @@ func energy_K(a float64) float64  {
 
 func options()  {
 	fmt.Println("(1) Fahrenheit or (2) Kelvin to Celsius")
-	fmt.Println("(3) Wavelength to Wavenumber")
-	fmt.Println("(4) Wavenumber to Wavelength")
-	fmt.Println("(5) Kelvin to thermal Energy")
-	fmt.Println("(6) Thermal Energy to Kelvin")
+	fmt.Println("(3) Celsius to Fahrenheit or (4) to Kelvin")
+	fmt.Println("(5) Wavelength to Wavenumber")
+	fmt.Println("(6) Wavenumber to Wavelength")
+	fmt.Println("(7) Kelvin to thermal Energy")
+	fmt.Println("(8) Thermal Energy to Kelvin")
 	fmt.Println("Type Quit to close the program")
 }
 
@@ -101,23 +114,37 @@ func main() {
 			y2 := PhysUnit{id: "Temperature", value: kelvin(x), unit: "°C"}
 			output(y1, y2)
 		case "3":
+			fmt.Println("Type Temperature in Celsius!")
+			var x float64
+			fmt.Scanln(&x)
+			y1 := PhysUnit{id: "Temperature", value: x, unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: cToFahrenheit(x), unit: "F"}
+			output(y1, y2)
+		case "4":
+			fmt.Println("Type Temperature in Celsius!")
+			var x float64
+			fmt.Scanln(&x)
+			y1 := PhysUnit{id: "Temperature", value: x, unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: cToKelvin(x), unit: "K"}
+			output(y1, y2)
+		case "5":
 			fmt.Println("Type Wavelength in nm!")
 			var x float64
 			fmt.Scanln(&x)
 			y1 := PhysUnit{id: "Wavelength", value: x, unit: "nm"}
 			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(x), unit: "cm-1"}
 			output(y1, y2)
-		case "4":
+		case "6":
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(waveconvert(x), "nm")
-		case "5":
+		case "7":
 			fmt.Println("Type Temperature in K!")
 			var x float64
 			fmt.Scanln(&x)
 			fmt.Println(energy_eV(x), "eV")
-		case "6":
+		case "8":
 			fmt.Println("Type Energy in eV!")
 			var x float64
 			fmt.Scanln(&x)
