@@ -138,18 +138,23 @@ func main() {
 			fmt.Println("Type Wavenumber in cm-1!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(waveconvert(x), "nm")
+			y1 := PhysUnit{id: "Wavenumber", value: x, unit: "cm-1"}
+			y2 := PhysUnit{id: "Wavelength", value: waveconvert(x), unit: "nm"}
+			output(y1, y2)
 		case "7":
 			fmt.Println("Type Temperature in K!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(energy_eV(x), "eV")
+			y1 := PhysUnit{id: "Temperature", value: x, unit: "K"}
+			y2 := PhysUnit{id: "Energy", value: energy_eV(x), unit: "eV"}
+			output(y1, y2)
 		case "8":
 			fmt.Println("Type Energy in eV!")
 			var x float64
 			fmt.Scanln(&x)
-			fmt.Println(energy_K(x), "K")
-
+			y1 := PhysUnit{id: "Energy", value: x, unit: "eV"}
+			y2 := PhysUnit{id: "Temperature", value: energy_K(x), unit: "K"}
+			output(y1, y2)
 		}
 
 	}
