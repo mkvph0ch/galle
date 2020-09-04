@@ -97,7 +97,7 @@ func output(y1 PhysUnit, y2 PhysUnit) {
 
 func output_multiple(y1 PhysUnitm, y2 PhysUnitm) {
 	// output with 2 decimal precision
-	fmt.Printf("%s %.2f %s was converted to %s %.2f %s .\n", y1.id, y1.value, y1.unit, y2.id, y2.value, y2.unit)
+	fmt.Printf("%s %.2f %s was converted to %s %.2f %s.\n", y1.id, y1.value, y1.unit, y2.id, y2.value, y2.unit)
 }
 
 type PhysUnit struct {
@@ -127,14 +127,13 @@ func myReadln() []float64 {
 		}
 		text = strings.TrimSpace(text)
 
-		num64, err := strconv.ParseFloat(text, 64)
+		num, err := strconv.ParseFloat(text, 64)
 		if err != nil {
 			// error handling
-			// e.g. just break
 			break
 		}
 		
-		nums = append(nums, float64(num64))
+		nums = append(nums, num)
 		}
 
 		return nums
@@ -147,21 +146,21 @@ func main() {
 
 	for active {
 
-		fmt.Println("")
-		fmt.Println("Choose a Converter, 'Type Options'")
+		fmt.Printf("\nChoose a Converter, Type 'Options'\n")
 
 		var input string
 		fmt.Scanln(&input)
+		input = strings.ToLower(input)
 
 		switch input {
 		default:
 			fmt.Println("Please choose a conversion from the list!")
-		case "Quit":
+		case "quit":
 			fmt.Println("Program will be closed")
 			active = false
 			time.Sleep(time.Millisecond * 2000)
 			os.Exit(1)
-		case "Options":
+		case "options":
 			options()
 		case "1":
 			fmt.Println("Type Temperature in Fahrenheit!")
