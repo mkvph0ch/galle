@@ -12,101 +12,111 @@ import (
 
 func ftoCelsius(nums []float64) []float64 {
 	// convert Fahrenheit °F to Celsius °C
-	var result []float64 
+	var result []float64
 
-	for _, v := range nums { 
-
+	for _, v := range nums {
 		result = append(result, (v-32) * 5/9)
-
-		} 
+		}
 	return result
 }
 
 func kToCelsius(nums []float64) []float64 {
 	// convert Kelvin K to Celsius °C
-	var result []float64 
+	var result []float64
 
-	for _, v := range nums { 
-
+	for _, v := range nums {
 		result = append(result, v - 273.15)
-
-		} 
+		}
 	return result
 }
 
 func cToKelvin(nums []float64) []float64 {
 	// convert Celsius °C to Kelvin
-	var result []float64 
+	var result []float64
 
-	for _, v := range nums { 
-
+	for _, v := range nums {
 		result = append(result, v + 273.15)
-
-		} 
+		}
 	return result
 }
 
 func cToFahrenheit(nums []float64) []float64 {
 	// convert Celsius °C to Fahrenheit
-	var result []float64 
+	var result []float64
 
-	for _, v := range nums { 
-
+	for _, v := range nums {
 		result = append(result, (v * 9/5) + 32)
-
-		} 
+		}
 	return result
 }
 
-
-func waveconvert(a float64) float64  {
+func waveconvert(nums []float64) []float64  {
 	// convert Wavenumber cm-1 <-> Wavelength nm
-	if a != 0 {
-		b := 1/(a*math.Pow(10, -7))
-		return b
-	} else {
-		fmt.Println("Divison by 0 not possible")
-		return 0
-	}
+	var result []float64
+
+	for _, v := range nums {
+
+		if v != 0 {
+			result = append(result, 1/(v*math.Pow(10, -7)))
+		} else {
+			fmt.Println("Divison by 0 not possible")
+		}
+
+		}
+	return result
 }
 
-func energy_eV(a float64) float64  {
+func energy_eV(nums []float64) []float64  {
 	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
-	b := 8.617333262145*math.Pow(10,-5) * a
-	return b
+	var result []float64
+
+	for _, v := range nums {
+		result = append(result, 8.617333262145*math.Pow(10,-5) * v)
+		}
+	return result
 }
 
-func energy_K(a float64) float64  {
+func energy_K(nums []float64) []float64  {
 	// convert thermal Energy eV to Kelvin (k_boltzmann * T)
-	b := a / 8.617333262145*math.Pow(10,-5)
-	return b
+	var result []float64
+
+	for _, v := range nums {
+		result = append(result, v / 8.617333262145*math.Pow(10,-5))
+		}
+	return result
 }
 
 func options()  {
-	fmt.Println("(1) Fahrenheit or (2) Kelvin to Celsius")
-	fmt.Println("(3) Celsius to Fahrenheit or (4) to Kelvin")
-	fmt.Println("(5) Wavelength <-> Wavenumber")
-	fmt.Println("(6) Kelvin to thermal Energy")
-	fmt.Println("(7) Thermal Energy to Kelvin")
-	fmt.Println("Type Quit to close the program")
+	options := []string{"Fahrenheit to Celsius",
+											"Kelvin to Celsius",
+											"Celsius to Fahrenheit",
+											"Celsius to Kelvin",
+											"Wavelength to Wavenumber",
+											"Wavenumber to Wavelength",
+											"Kelvin to thermal Energy",
+											"Thermal Energy to Kelvin",
+											"Type Quit to exit"}
+
+	for i, v := range options {
+		if i+1 < len(options) {
+			fmt.Println(i+1, v)
+		} else {
+			fmt.Println(v)
+		}
+
+	}
 }
 
 func output(y1 PhysUnit, y2 PhysUnit) {
 	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit, ".")
 }
 
-func output_multiple(y1 PhysUnitm, y2 PhysUnitm) {
+func output_precision(y1 PhysUnit, y2 PhysUnit) {
 	// output with 2 decimal precision
 	fmt.Printf("%s %.2f %s was converted to %s %.2f %s.\n", y1.id, y1.value, y1.unit, y2.id, y2.value, y2.unit)
 }
 
 type PhysUnit struct {
-	id		string
-	value	float64
-	unit	string
-}
-
-type PhysUnitm struct {
 	id		string
 	value	[]float64
 	unit	string
@@ -132,7 +142,7 @@ func myReadln() []float64 {
 			// error handling
 			break
 		}
-		
+
 		nums = append(nums, num)
 		}
 
@@ -165,62 +175,50 @@ func main() {
 		case "1":
 			fmt.Println("Type Temperature in Fahrenheit!")
 			nums := myReadln()
-			y1 := PhysUnitm{id: "Temperature", value: nums, unit: "F"}
-			y2 := PhysUnitm{id: "Temperature", value: ftoCelsius(y1.value), unit: "°C"}
-			output_multiple(y1, y2)
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
+			y2 := PhysUnit{id: "Temperature", value: ftoCelsius(y1.value), unit: "°C"}
+			output(y1, y2)
 		case "2":
 			fmt.Println("Type Temperature in Kelvin!")
 			nums := myReadln()
-			y1 := PhysUnitm{id: "Temperature", value: nums, unit: "K"}
-			y2 := PhysUnitm{id: "Temperature", value: kToCelsius(y1.value), unit: "°C"}
-			output_multiple(y1, y2)
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
+			y2 := PhysUnit{id: "Temperature", value: kToCelsius(y1.value), unit: "°C"}
+			output(y1, y2)
 		case "3":
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
-			y1 := PhysUnitm{id: "Temperature", value: nums, unit: "°C"}
-			y2 := PhysUnitm{id: "Temperature", value: cToFahrenheit(y1.value), unit: "F"}
-			output_multiple(y1, y2)
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: cToFahrenheit(y1.value), unit: "F"}
+			output(y1, y2)
 		case "4":
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
-			y1 := PhysUnitm{id: "Temperature", value: nums, unit: "°C"}
-			y2 := PhysUnitm{id: "Temperature", value: cToKelvin(y1.value), unit: "K"}
-			output_multiple(y1, y2)
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: cToKelvin(y1.value), unit: "K"}
+			output(y1, y2)
 		case "5":
-			fmt.Println("Type Wavelength/Wavenumber in nm/cm-1!")
-			var x float64
-			fmt.Scanln(&x)
-			y1 := PhysUnit{id: "Wavelength", value: x, unit: "nm"}
-			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(x), unit: "cm-1"}
+			fmt.Println("Type Wavelength in nm!")
+			nums := myReadln()
+			y1 := PhysUnit{id: "Wavelength", value: nums, unit: "nm"}
+			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(y1.value), unit: "cm-1"}
 			output(y1, y2)
 		case "6":
-<<<<<<< HEAD
 			fmt.Println("Type Wavenumber in cm-1!")
-			var x float64
-			fmt.Scanln(&x)
-			y1 := PhysUnit{id: "Wavenumber", value: x, unit: "cm-1"}
-			y2 := PhysUnit{id: "Wavelength", value: waveconvert(x), unit: "nm"}
+			nums := myReadln()
+			y1 := PhysUnit{id: "Wavenumber", value: nums, unit: "cm-1"}
+			y2 := PhysUnit{id: "Wavelength", value: waveconvert(y1.value), unit: "nm"}
 			output(y1, y2)
 		case "7":
 			fmt.Println("Type Temperature in K!")
-			var x float64
-			fmt.Scanln(&x)
-			y1 := PhysUnit{id: "Temperature", value: x, unit: "K"}
-			y2 := PhysUnit{id: "Energy", value: energy_eV(x), unit: "eV"}
+			nums := myReadln()
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
+			y2 := PhysUnit{id: "Energy", value: energy_eV(y1.value), unit: "eV"}
 			output(y1, y2)
 		case "8":
-=======
-			fmt.Println("Type Temperature in K!")
-			var x float64
-			fmt.Scanln(&x)
-			fmt.Println(energy_eV(x), "eV")
-		case "7":
->>>>>>> 8741b227da7fce28f8520fc9687c31153166a315
 			fmt.Println("Type Energy in eV!")
-			var x float64
-			fmt.Scanln(&x)
-			y1 := PhysUnit{id: "Energy", value: x, unit: "eV"}
-			y2 := PhysUnit{id: "Temperature", value: energy_K(x), unit: "K"}
+			nums := myReadln()
+			y1 := PhysUnit{id: "Energy", value: nums, unit: "eV"}
+			y2 := PhysUnit{id: "Temperature", value: energy_K(y1.value), unit: "K"}
 			output(y1, y2)
 		}
 
