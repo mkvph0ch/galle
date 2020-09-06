@@ -86,7 +86,10 @@ func energy_K(nums []float64) []float64  {
 	return result
 }
 
-func options()  {
+func options() map[string]string {
+
+	m := make(map[string]string)
+
 	options := []string{"Fahrenheit to Celsius",
 											"Kelvin to Celsius",
 											"Celsius to Fahrenheit",
@@ -100,11 +103,14 @@ func options()  {
 	for i, v := range options {
 		if i+1 < len(options) {
 			fmt.Println(i+1, v)
+			m[v] = strconv.Itoa(i+1)
 		} else {
 			fmt.Println(v)
+			m[v] = strconv.Itoa(0)
 		}
-
 	}
+	
+	return m
 }
 
 func output(y1 PhysUnit, y2 PhysUnit) {
@@ -134,6 +140,7 @@ func myReadln() []float64 {
 		text, err := reader.ReadString('\n')
 		if err != nil {
 			// error handling
+			break
 		}
 		text = strings.TrimSpace(text)
 
@@ -152,7 +159,7 @@ func myReadln() []float64 {
 func main() {
 	active := true
 
-	options()
+	m := options()
 
 	for active {
 
@@ -171,50 +178,50 @@ func main() {
 			time.Sleep(time.Millisecond * 2000)
 			os.Exit(1)
 		case "options":
-			options()
-		case "1":
+			m = options()
+		case m["Fahrenheit to Celsius"]:
 			fmt.Println("Type Temperature in Fahrenheit!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
 			y2 := PhysUnit{id: "Temperature", value: ftoCelsius(y1.value), unit: "°C"}
 			output(y1, y2)
-		case "2":
+		case m["Kelvin to Celsius"]:
 			fmt.Println("Type Temperature in Kelvin!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
 			y2 := PhysUnit{id: "Temperature", value: kToCelsius(y1.value), unit: "°C"}
 			output(y1, y2)
-		case "3":
+		case m["Celsius to Fahrenheit"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
 			y2 := PhysUnit{id: "Temperature", value: cToFahrenheit(y1.value), unit: "F"}
 			output(y1, y2)
-		case "4":
+		case m["Celsius to Kelvin"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
 			y2 := PhysUnit{id: "Temperature", value: cToKelvin(y1.value), unit: "K"}
 			output(y1, y2)
-		case "5":
+		case m["Wavelength to Wavenumber"]:
 			fmt.Println("Type Wavelength in nm!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Wavelength", value: nums, unit: "nm"}
 			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(y1.value), unit: "cm-1"}
 			output(y1, y2)
-		case "6":
+		case m["Wavenumber to Wavelength"]:
 			fmt.Println("Type Wavenumber in cm-1!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Wavenumber", value: nums, unit: "cm-1"}
 			y2 := PhysUnit{id: "Wavelength", value: waveconvert(y1.value), unit: "nm"}
 			output(y1, y2)
-		case "7":
+		case m["Kelvin to thermal Energy"]:
 			fmt.Println("Type Temperature in K!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
 			y2 := PhysUnit{id: "Energy", value: energy_eV(y1.value), unit: "eV"}
 			output(y1, y2)
-		case "8":
+		case m["Thermal Energy to Kelvin"]:
 			fmt.Println("Type Energy in eV!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Energy", value: nums, unit: "eV"}
