@@ -10,43 +10,58 @@ import (
 	"strings"
 )
 
-func ftoCelsius(nums []float64) []float64 {
-	// convert Fahrenheit °F to Celsius °C
+func Temperature(y PhysUnit, s string) []float64{
+
 	var result []float64
 
-	for _, v := range nums {
-		result = append(result, (v-32) * 5/9)
+	if (y.unit == "°C") && (s == "F") {
+		// Celsius to Fahrenheit
+		for _, v := range y.value {
+			result = append(result, (v * 9/5) + 32)
 		}
-	return result
-}
 
-func kToCelsius(nums []float64) []float64 {
-	// convert Kelvin K to Celsius °C
-	var result []float64
+	}
 
-	for _, v := range nums {
-		result = append(result, v - 273.15)
+	if (y.unit == "°C") && (s == "K") {
+		// Celsius to Kelvin
+		for _, v := range y.value {
+			result = append(result, (v + 273.15))
 		}
-	return result
-}
 
-func cToKelvin(nums []float64) []float64 {
-	// convert Celsius °C to Kelvin
-	var result []float64
+	}
 
-	for _, v := range nums {
-		result = append(result, v + 273.15)
+	if (y.unit == "F") && (s == "°C") {
+		// Fahrenheit to Celsius
+		for _, v := range y.value {
+			result = append(result, (v-32) * 5/9)
 		}
-	return result
-}
 
-func cToFahrenheit(nums []float64) []float64 {
-	// convert Celsius °C to Fahrenheit
-	var result []float64
+	}
 
-	for _, v := range nums {
-		result = append(result, (v * 9/5) + 32)
+	if (y.unit == "F") && (s == "K") {
+		// Fahrenheit to Kelvin
+		for _, v := range y.value {
+			result = append(result, ((v-32) * 5/9) + 273.15)
 		}
+
+	}
+
+	if (y.unit == "K") && (s == "°C") {
+		// Kelvin to Celsius
+		for _, v := range y.value {
+			result = append(result, v - 273.15)
+		}
+
+	}
+
+	if (y.unit == "K") && (s == "F") {
+		// Kelvin to Fahrenheit
+		for _, v := range y.value {
+			result = append(result, (v - 273.15) * 9/5 + 32)
+		}
+
+	}
+
 	return result
 }
 
@@ -91,7 +106,9 @@ func options() map[string]string {
 	m := make(map[string]string)
 
 	options := []string{"Fahrenheit to Celsius",
+											"Fahrenheit to Kelvin",
 											"Kelvin to Celsius",
+											"Kelvin to Fahrenheit",
 											"Celsius to Fahrenheit",
 											"Celsius to Kelvin",
 											"Wavelength to Wavenumber",
@@ -109,7 +126,7 @@ func options() map[string]string {
 			m[v] = strconv.Itoa(0)
 		}
 	}
-	
+
 	return m
 }
 
@@ -183,25 +200,37 @@ func main() {
 			fmt.Println("Type Temperature in Fahrenheit!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
-			y2 := PhysUnit{id: "Temperature", value: ftoCelsius(y1.value), unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "°C"), unit: "°C"}
+			output(y1, y2)
+		case m["Fahrenheit to Kelvin"]:
+			fmt.Println("Type Temperature in Fahrenheit!")
+			nums := myReadln()
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "K"), unit: "K"}
 			output(y1, y2)
 		case m["Kelvin to Celsius"]:
 			fmt.Println("Type Temperature in Kelvin!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
-			y2 := PhysUnit{id: "Temperature", value: kToCelsius(y1.value), unit: "°C"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "°C"), unit: "°C"}
+			output(y1, y2)
+		case m["Kelvin to Fahrenheit"]:
+			fmt.Println("Type Temperature in Kelvin!")
+			nums := myReadln()
+			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "F"), unit: "F"}
 			output(y1, y2)
 		case m["Celsius to Fahrenheit"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
-			y2 := PhysUnit{id: "Temperature", value: cToFahrenheit(y1.value), unit: "F"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "F"), unit: "F"}
 			output(y1, y2)
 		case m["Celsius to Kelvin"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
-			y2 := PhysUnit{id: "Temperature", value: cToKelvin(y1.value), unit: "K"}
+			y2 := PhysUnit{id: "Temperature", value: Temperature(y1, "K"), unit: "K"}
 			output(y1, y2)
 		case m["Wavelength to Wavenumber"]:
 			fmt.Println("Type Wavelength in nm!")
