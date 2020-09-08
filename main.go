@@ -65,7 +65,7 @@ func Temperature(y PhysUnit, s string) []float64{
 	return result
 }
 
-func waveconvert(nums []float64) []float64  {
+func Waveconvert(nums []float64) []float64  {
 	// convert Wavenumber cm-1 <-> Wavelength nm
 	var result []float64
 
@@ -81,23 +81,24 @@ func waveconvert(nums []float64) []float64  {
 	return result
 }
 
-func energy_eV(nums []float64) []float64  {
-	// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
+func Energy(y PhysUnit, s string) []float64 {
+	//
 	var result []float64
 
-	for _, v := range nums {
-		result = append(result, 8.617333262145*math.Pow(10,-5) * v)
-		}
-	return result
-}
+	if (y.unit == "K") && (s == "eV") {
+		// convert Kelvin K to thermal Energy eV (k_boltzmann * T)
+		for _, v := range y.value {
+			result = append(result, 8.617333262145*math.Pow(10,-5) * v)
+			}
+	}
 
-func energy_K(nums []float64) []float64  {
-	// convert thermal Energy eV to Kelvin (k_boltzmann * T)
-	var result []float64
+	if (y.unit == "eV") && (s == "K") {
+		// convert thermal Energy eV to Kelvin (k_boltzmann * T)
+		for _, v := range y.value {
+			result = append(result, v / (8.617333262145*math.Pow(10,-5)))
+			}
+	}
 
-	for _, v := range nums {
-		result = append(result, v / 8.617333262145*math.Pow(10,-5))
-		}
 	return result
 }
 
@@ -236,25 +237,25 @@ func main() {
 			fmt.Println("Type Wavelength in nm!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Wavelength", value: nums, unit: "nm"}
-			y2 := PhysUnit{id: "Wavenumber", value: waveconvert(y1.value), unit: "cm-1"}
+			y2 := PhysUnit{id: "Wavenumber", value: Waveconvert(y1.value), unit: "cm-1"}
 			output(y1, y2)
 		case m["Wavenumber to Wavelength"]:
 			fmt.Println("Type Wavenumber in cm-1!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Wavenumber", value: nums, unit: "cm-1"}
-			y2 := PhysUnit{id: "Wavelength", value: waveconvert(y1.value), unit: "nm"}
+			y2 := PhysUnit{id: "Wavelength", value: Waveconvert(y1.value), unit: "nm"}
 			output(y1, y2)
 		case m["Kelvin to thermal Energy"]:
 			fmt.Println("Type Temperature in K!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
-			y2 := PhysUnit{id: "Energy", value: energy_eV(y1.value), unit: "eV"}
+			y2 := PhysUnit{id: "Energy", value: Energy(y1, "eV"), unit: "eV"}
 			output(y1, y2)
 		case m["Thermal Energy to Kelvin"]:
 			fmt.Println("Type Energy in eV!")
 			nums := myReadln()
 			y1 := PhysUnit{id: "Energy", value: nums, unit: "eV"}
-			y2 := PhysUnit{id: "Temperature", value: energy_K(y1.value), unit: "K"}
+			y2 := PhysUnit{id: "Temperature", value: Energy(y1, "K"), unit: "K"}
 			output(y1, y2)
 		}
 
