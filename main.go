@@ -22,9 +22,9 @@ func output(y1 PhysUnit, y2 PhysUnit) {
 	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit, ".")
 }
 
-func output_precision(y1 PhysUnit, y2 PhysUnit) {
+func outputPrecision(y1 PhysUnit, y2 PhysUnit, precision int) {
 	// output with 2 decimal precision
-	fmt.Printf("%s %.2f %s was converted to %s %.2f %s.\n", y1.id, y1.value, y1.unit, y2.id, y2.value, y2.unit)
+	fmt.Printf("%s %.*f %s was converted to %s %.*f %s.\n", y1.id, precision, y1.value, y1.unit, y2.id, precision, y2.value, y2.unit)
 }
 
 func main() {
