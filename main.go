@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
-	//"encoding/csv"
+	"encoding/csv"
 
 	cv "galle/conversion"
 	op "galle/options"
@@ -20,8 +22,34 @@ type PhysUnit struct {
 	unit  string
 }
 
+func toCSV(y2 PhysUnit) {
+	recordFile, err := os.Create("./out.csv")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	newStr := []string{}
+
+	for _, v := range y2.value {
+		newStr = append(newStr, strconv.FormatFloat(v, 'f', -1, 64))
+	}
+
+	fmt.Println("This is newStr", newStr)
+
+	w := csv.NewWriter(recordFile)
+	w.Write(newStr)
+	w.Flush()
+
+	if err := w.Error(); err != nil {
+		log.Fatalln("error writing csv:", err)
+	}
+}
+
 func output(y1 PhysUnit, y2 PhysUnit) {
 	fmt.Println(y1.id, y1.value, y1.unit, "was converted to", y2.id, y2.value, y2.unit, ".")
+
+	toCSV(y2)
 }
 
 func outputPrecision(y1 PhysUnit, y2 PhysUnit, precision int) {
