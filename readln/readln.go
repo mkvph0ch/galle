@@ -1,9 +1,9 @@
 package readln
 
 import (
-  "fmt"
-  "os"
-  "bufio"
+	"bufio"
+	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -31,7 +31,7 @@ func Readln() []float64 {
 		}
 
 		nums = append(nums, num)
-		}
+	}
 
-		return nums
+	return nums
 }

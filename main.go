@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 	"strings"
+	"time"
+
+	//"encoding/csv"
 
 	cv "galle/conversion"
 	op "galle/options"
@@ -13,9 +15,9 @@ import (
 
 type PhysUnit struct {
 	// struct PhysUnit for all physical Units
-	id		string
-	value	[]float64
-	unit	string
+	id    string
+	value []float64
+	unit  string
 }
 
 func output(y1 PhysUnit, y2 PhysUnit) {
@@ -34,7 +36,7 @@ func main() {
 
 	for active {
 
-		fmt.Printf("\nChoose a Converter, Type 'Options'\n")
+		fmt.Printf("\nChoose a Converter, Type \"Options\" \n")
 
 		var input string
 		fmt.Scanln(&input)
@@ -50,61 +52,61 @@ func main() {
 			os.Exit(1)
 		case "options":
 			m = op.Options()
-		case m["Fahrenheit to Celsius"]:
+		case m["F->C"]:
 			fmt.Println("Type Temperature in Fahrenheit!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "°C"), unit: "°C"}
 			output(y1, y2)
-		case m["Fahrenheit to Kelvin"]:
+		case m["F->K"]:
 			fmt.Println("Type Temperature in Fahrenheit!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "F"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "K"), unit: "K"}
 			output(y1, y2)
-		case m["Kelvin to Celsius"]:
+		case m["K->C"]:
 			fmt.Println("Type Temperature in Kelvin!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "°C"), unit: "°C"}
 			output(y1, y2)
-		case m["Kelvin to Fahrenheit"]:
+		case m["K->F"]:
 			fmt.Println("Type Temperature in Kelvin!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "F"), unit: "F"}
 			output(y1, y2)
-		case m["Celsius to Fahrenheit"]:
+		case m["C->F"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "F"), unit: "F"}
 			output(y1, y2)
-		case m["Celsius to Kelvin"]:
+		case m["C->K"]:
 			fmt.Println("Type Temperature in Celsius!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "°C"}
 			y2 := PhysUnit{id: "Temperature", value: cv.Temperature(y1.value, y1.unit, "K"), unit: "K"}
 			output(y1, y2)
-		case m["Wavelength to Wavenumber"]:
+		case m["nm->cm-1"]:
 			fmt.Println("Type Wavelength in nm!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Wavelength", value: nums, unit: "nm"}
 			y2 := PhysUnit{id: "Wavenumber", value: cv.Waveconvert(y1.value), unit: "cm-1"}
 			output(y1, y2)
-		case m["Wavenumber to Wavelength"]:
+		case m["cm-1->nm"]:
 			fmt.Println("Type Wavenumber in cm-1!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Wavenumber", value: nums, unit: "cm-1"}
 			y2 := PhysUnit{id: "Wavelength", value: cv.Waveconvert(y1.value), unit: "nm"}
 			output(y1, y2)
-		case m["Kelvin to thermal Energy"]:
+		case m["K->eV"]:
 			fmt.Println("Type Temperature in K!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Temperature", value: nums, unit: "K"}
 			y2 := PhysUnit{id: "Energy", value: cv.Energy(y1.value, y1.unit, "eV"), unit: "eV"}
 			output(y1, y2)
-		case m["Thermal Energy to Kelvin"]:
+		case m["eV->K"]:
 			fmt.Println("Type Energy in eV!")
 			nums := rl.Readln()
 			y1 := PhysUnit{id: "Energy", value: nums, unit: "eV"}
