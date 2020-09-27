@@ -35,8 +35,6 @@ func toCSV(y2 PhysUnit) {
 		newStr = append(newStr, strconv.FormatFloat(v, 'f', -1, 64))
 	}
 
-	fmt.Println("This is newStr", newStr)
-
 	w := csv.NewWriter(recordFile)
 	w.Write(newStr)
 	w.Flush()
